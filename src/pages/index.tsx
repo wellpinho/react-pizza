@@ -26,6 +26,8 @@ export default function Home() {
       return;
     }
 
+    setLoading(true);
+
     // fake login
     let data = {
       // pega os dados digitado e envia para o AuthContext
@@ -34,6 +36,8 @@ export default function Home() {
     };
 
     await signIn(data);
+
+    setLoading(false);
   }
   return (
     <>
@@ -63,7 +67,7 @@ export default function Home() {
               required
             />
 
-            <Button type="submit" loading={false}>
+            <Button type="submit" loading={loading}>
               Acessar
             </Button>
           </form>
