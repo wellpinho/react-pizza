@@ -1,3 +1,4 @@
+import { GetServerSideProps } from "next";
 import { FormEvent, useContext, useState } from "react";
 
 import Head from "next/head";
@@ -11,6 +12,7 @@ import Button from "../components/ui/button/button";
 import { AuthContext } from "../contexts/AuthContext";
 // usado para rotear nossos links
 import Link from "next/link";
+import { canSSRGuest } from "../utils/canSSRGuest";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -80,3 +82,10 @@ export default function Home() {
     </>
   );
 }
+
+// tudo que tem nesta função só executa do lado do servidor
+export const getServerSideProps = canSSRGuest(async (ctx) => {
+  return {
+    props: {},
+  };
+});
