@@ -6,6 +6,9 @@ import LogoImg from "../../public/logo.svg";
 import Input from "../components/ui/input/input";
 import Button from "../components/ui/button/button";
 
+// usado para rotear nossos links
+import Link from "next/link";
+
 export default function Home() {
   return (
     <>
@@ -17,6 +20,8 @@ export default function Home() {
         <Image src={LogoImg} alt="Love Sushi" />
 
         <div className={styles.login}>
+          <h1>Faça login</h1>
+
           <form>
             <Input type="email" placeholder="Digite seu email" />
             <Input type="password" placeholder="Digite sua senha" />
@@ -26,7 +31,9 @@ export default function Home() {
             </Button>
           </form>
 
-          <a className={styles.a}>Não possui conta? Cadastre-se</a>
+          <Link href="/signup">
+            <a className={styles.a}>Não possui conta? Cadastre-se</a>
+          </Link>
         </div>
       </div>
     </>

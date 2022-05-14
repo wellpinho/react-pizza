@@ -14,11 +14,25 @@
     justify-content: center;
     flex-direction: column;
     padding: 2rem 1.5rem;
+
+    h1 {
+      color: var(--white);
+      margin-bottom: .6rem;
+    }
   
     form {
       width: 90%;
       display: flex;
       flex-direction: column;
+
+      .inputInline { 
+        input {
+          width: 49%;
+        }       
+        input:first-child {
+          margin-right: 2%;
+        }
+      }
   
       button {
         height: 40px;
