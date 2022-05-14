@@ -4,6 +4,7 @@ import Router from "next/router";
 
 // api do servidor
 import { api } from "../services/apiClient";
+import { toast } from "react-toastify";
 
 type AuthContextData = {
   user: UserProps;
@@ -72,9 +73,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
       // passar para as outras requisições o token
       api.defaults.headers["Authorization"] = `Bearer ${token}`;
 
+      // alerta personalizado do react-toastfy
+      toast.success("Logado com sucesso!");
+
       // redirecionar o user para /dashboard
       Router.push("/dashboard");
     } catch (error) {
+      toast.error("Erro ao acessar");
       console.log("Erro ao acessar", error);
     }
   }
@@ -88,11 +93,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
         password,
       });
 
-      console.log("cadastrado com sucvesso");
+      toast.success("Conta criada!!");
 
       Router.push("/");
     } catch (error) {
-      console.log("Error ao cadastrar", error);
+      toast.error("Erro ao criar conta");
     }
   }
 
