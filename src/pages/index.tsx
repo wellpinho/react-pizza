@@ -1,3 +1,5 @@
+import { FormEvent, useContext, useState } from "react";
+
 import Head from "next/head";
 import Image from "next/image";
 
@@ -6,10 +8,29 @@ import LogoImg from "../../public/logo.svg";
 import Input from "../components/ui/input/input";
 import Button from "../components/ui/button/button";
 
+import { AuthContext } from "../contexts/AuthContext";
 // usado para rotear nossos links
 import Link from "next/link";
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const { signin } = useContext(AuthContext);
+
+  async function handleLogin(event: FormEvent) {
+    event.preventDefault();
+
+    // fake login
+    let data = {
+      // pega os dados digitado e envia para o AuthContext
+      email,
+      password,
+    };
+
+    await signin(data);
+  }
   return (
     <>
       <Head>
@@ -22,9 +43,19 @@ export default function Home() {
         <div className={styles.login}>
           <h1>Faça login</h1>
 
-          <form>
-            <Input type="email" placeholder="Digite seu email" />
-            <Input type="password" placeholder="Digite sua senha" />
+          <form onSubmit={handleLogin}>
+            <Input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Digite seu email"
+            />
+            <Input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Digite sua senha"
+            />
 
             <Button type="submit" loading={false}>
               Acessar
