@@ -22,6 +22,10 @@ export default function Home() {
   async function handleLogin(event: FormEvent) {
     event.preventDefault();
 
+    if (!email || !password) {
+      return;
+    }
+
     // fake login
     let data = {
       // pega os dados digitado e envia para o AuthContext
