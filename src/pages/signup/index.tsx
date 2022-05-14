@@ -24,11 +24,11 @@ export default function Signup() {
 
           <form>
             <div className={styles.inputInline}>
-              <Input type="text" placeholder="nome" />
-              <Input type="text" placeholder="sobrenome" />
+              <Input type="text" placeholder="nome" required />
+              <Input type="text" placeholder="sobrenome" required />
             </div>
-            <Input type="email" placeholder="email" />
-            <Input type="password" placeholder="senha" />
+            <Input type="email" placeholder="email" required />
+            <Input type="password" placeholder="senha" required />
 
             <Button type="submit" loading={false}>
               Criar conta

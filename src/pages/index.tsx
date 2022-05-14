@@ -17,7 +17,7 @@ export default function Home() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { signin } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
 
   async function handleLogin(event: FormEvent) {
     event.preventDefault();
@@ -29,7 +29,7 @@ export default function Home() {
       password,
     };
 
-    await signin(data);
+    await signIn(data);
   }
   return (
     <>
@@ -49,12 +49,14 @@ export default function Home() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Digite seu email"
+              required
             />
             <Input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Digite sua senha"
+              required
             />
 
             <Button type="submit" loading={false}>
