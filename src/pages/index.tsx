@@ -1,4 +1,3 @@
-import { GetServerSideProps } from "next";
 import { FormEvent, useContext, useState } from "react";
 
 import Head from "next/head";

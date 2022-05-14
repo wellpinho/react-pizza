@@ -1,3 +1,6 @@
+/*
+  Páginas que só pessoa não logadas podem acessar
+*/
 import { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import { parseCookies } from 'nookies'
 
