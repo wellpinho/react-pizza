@@ -22,7 +22,7 @@ export default function Header() {
         <h1>Bem vindo {user?.name}</h1> */}
 
         <nav>
-          <Link href="/categories">
+          <Link href="/category">
             <a>Categoria</a>
           </Link>
           <Link href="/menu">
