@@ -1,5 +1,5 @@
-import { destroyCookie, setCookie } from "nookies";
-import { createContext, ReactNode, useState } from "react";
+import { destroyCookie, parseCookies, setCookie } from "nookies";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import Router from "next/router";
 
 // api do servidor
@@ -17,6 +17,7 @@ type AuthContextData = {
 type UserProps = {
   id: string;
   name: string;
+  lastname?: string;
   email: string;
 };
 
@@ -52,6 +53,31 @@ export function AuthProvider({ children }: AuthProviderProps) {
   // state obedece o type com seus atributos id, name, email
   const [user, setUser] = useState<UserProps>();
   const isAuthenticated = !!user; // !! converte a variavel em boleano: quando user tiver valor
+
+  // ciclo de vida da aplicação com useEffect()
+  useEffect(() => {
+    // tentar pegar algo no cookie
+    const { "@nextAuth.token": token } = parseCookies();
+
+    if (token) {
+      api
+        .get("/me")
+        .then((response) => {
+          const { id, name, lastname, email } = response.data;
+
+          setUser({
+            id,
+            name,
+            lastname,
+            email,
+          });
+        })
+        .catch((error) => {
+          // Se deu erro deslogamos o user!
+          signOut();
+        });
+    }
+  }, []);
 
   // recebe os dados digitados no login do pages/index
   async function signIn({ email, password }: SigninProps) {
