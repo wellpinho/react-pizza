@@ -56,6 +56,7 @@ export default function Category() {
   );
 }
 
+// função que verifica se user esta logado caso não ele nãoa cessa esta página
 export const getServerSideProps = canSSRAuth(async (ctx) => {
   return {
     props: {},
