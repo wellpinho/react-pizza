@@ -6,6 +6,9 @@ import { api } from "../../services/apiClient";
 
 import styles from "./styles.module.scss";
 
+// só pessoas logadas podem acessar a tela de criar categoria
+import { canSSRAuth } from "../../utils/canSSRAuth";
+
 export default function Category() {
   const [name, setName] = useState("");
 
@@ -52,3 +55,9 @@ export default function Category() {
     </>
   );
 }
+
+export const getServerSideProps = canSSRAuth(async (ctx) => {
+  return {
+    props: {},
+  };
+});
