@@ -35,7 +35,6 @@ export default function Header() {
           </button>
         </nav>
       </div>
-      <h1>Header</h1>
     </header>
   );
 }
