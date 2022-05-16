@@ -6,6 +6,11 @@
   display: flex;
   flex-direction: column;
 
+  span {
+    font-size: 1.2rem;
+    color: var(--gray-100);
+  }
+
   .containerHeader {
     display: flex;
     flex-direction: row;
